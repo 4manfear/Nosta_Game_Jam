@@ -14,6 +14,8 @@ public class Money_manager : MonoBehaviour
     [Header("bool statement")]
     public bool guards_bool, cats_bool, traps_bool;
 
+    public items_holder items_Holder;
+
 
     private void Start()
     {
@@ -56,7 +58,11 @@ public class Money_manager : MonoBehaviour
 
     public void buy_trap()
     {
-        current_Money_holds -= minimum_amount_for_traps;
+        //items_Holder.pitholes--;
+        if(items_Holder.pitholes <= 0)
+        {
+            traps_bool = false;
+        }
     }
 
     public void buy_pesticide()

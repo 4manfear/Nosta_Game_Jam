@@ -8,6 +8,7 @@ public class Drag_and_Drop : MonoBehaviour
 {
     [Header("References Script")]
     public Money_manager manager;
+    public items_holder holder;
 
     [SerializeField]
     public GameObject guard, cat, trap;
@@ -26,6 +27,7 @@ public class Drag_and_Drop : MonoBehaviour
     {
         throw_ray_to_the_point_of_touch_or_click();
         manager = FindObjectOfType<Money_manager>();
+        holder = FindObjectOfType<items_holder>();
     }
 
     void throw_ray_to_the_point_of_touch_or_click()
@@ -66,8 +68,10 @@ public class Drag_and_Drop : MonoBehaviour
         if (manager.traps_bool)
         {
             Instantiate(trap, position, Quaternion.identity);
-            manager.buy_trap();
+            
+            holder.pitholes--;
             manager.traps_bool = false;
+            
         }
     }
 

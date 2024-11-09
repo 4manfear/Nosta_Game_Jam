@@ -8,11 +8,12 @@ public class Chaecker : MonoBehaviour
     public Money_manager manager;
 
 
-
+    public items_holder holder;
 
     private void Update()
     {
         manager = FindObjectOfType<Money_manager>();
+        holder = FindObjectOfType<items_holder>();
     }
 
     public void amout_guard_checker()
@@ -45,11 +46,13 @@ public class Chaecker : MonoBehaviour
     }
     public void amount_traps_checker()
     {
-        if (manager.current_Money_holds >= manager.minimum_amount_for_traps)
+        if (holder.cancraftpithole)
         {
             manager.traps_bool = true;
             manager.guards_bool = false;
             manager.cats_bool = false;
+
+            holder.crating_pitholes();
 
         }
         else
