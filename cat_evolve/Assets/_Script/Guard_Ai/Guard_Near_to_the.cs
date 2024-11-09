@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Guard_Near_to_the : MonoBehaviour
 {
-    [Header("Guard game object holder")]
+    [Header("Guard Game Object Holder")]
     [SerializeField] private GameObject[] No_Of_Guards;
 
-    [Header("Cat position")]
+    [Header("Cat Position")]
     [SerializeField] private Transform catTransform;  // Reference to the cat's position
 
     [Header("Nearest Guard")]
@@ -43,7 +43,7 @@ public class Guard_Near_to_the : MonoBehaviour
 
         nearestGuard = closestGuard;
 
-        // (Optional) Debug to check if the nearest guard was found
+        // Optional Debug log to check if the nearest guard was found
         if (nearestGuard != null)
         {
             Debug.Log("Nearest guard to the cat is: " + nearestGuard.name);

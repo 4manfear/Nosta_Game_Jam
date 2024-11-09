@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   insect_or_Mole: []
-  range: 0
+  range: 5
   cat_in_Danger: 0
   dangerSource: {fileID: 0}
+  guardDetectionScript: {fileID: 0}
 --- !u!114 &-5049667428025183294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2151476587826838837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0207d0762bc7eb4e9e1efa8b850b572, type: 3}
   m_Name: 

@@ -99,10 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   walkableLayer:
     serializedVersion: 2
-    m_Bits: 0
-  target: {fileID: 0}
+    m_Bits: 8
   speedOfAi: 3
   detectionRadius: 5
+  patrolRadius: 10
+  rayCount: 8

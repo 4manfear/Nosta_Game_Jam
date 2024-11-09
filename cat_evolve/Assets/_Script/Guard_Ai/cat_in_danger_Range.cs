@@ -17,9 +17,22 @@ public class cat_in_danger_Range : MonoBehaviour
     [Header("Position of the Closest Danger Source")]
     public Transform dangerSource;  // Transform of the closest object in range
 
+
+    public Guard_Ai aioffuard;
+
+     // Reference to the Guard_Near_to_the script
+
     private void Update()
     {
+        aioffuard = GameObject.FindObjectOfType<Guard_Ai>();
+
         DetectDanger();
+
+        // Only try to move the nearest guard if the cat is in danger and the guard exists
+        if (cat_in_Danger)
+        {
+           aioffuard.target = dangerSource;
+        }
     }
 
     private void DetectDanger()
