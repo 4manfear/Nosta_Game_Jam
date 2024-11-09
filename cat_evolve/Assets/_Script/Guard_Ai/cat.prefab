@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1028547265921873689}
   - component: {fileID: 3622708347910435876}
-  - component: {fileID: 5779215044662855570}
+  - component: {fileID: -5091978557978322212}
+  - component: {fileID: -5049667428025183294}
   m_Layer: 0
-  m_Name: guard
-  m_TagString: Guard
+  m_Name: cat
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7584905, g: 0.40500528, b: 0.40500528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5779215044662855570
+--- !u!114 &-5091978557978322212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,15 +95,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2151476587826838837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac85bb07fb01314a8e7331225e56fd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 26d3b5e2b9ecc7946ac6add5f07bda5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  walkableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  target: {fileID: 0}
-  speedOfAi: 3
-  detectionRadius: 5
+  insect_or_Mole: []
+  range: 0
+  cat_in_Danger: 0
+  dangerSource: {fileID: 0}
+--- !u!114 &-5049667428025183294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151476587826838837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0207d0762bc7eb4e9e1efa8b850b572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  No_Of_Guards: []
+  catTransform: {fileID: 0}
+  nearestGuard: {fileID: 0}

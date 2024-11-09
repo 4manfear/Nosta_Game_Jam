@@ -8,19 +8,28 @@ public class Money_manager : MonoBehaviour
 
     public Drag_and_Drop drag_And_Drop;
 
-    
+    [Header("minimum amount needed")]
+    public int minimum_amount_for_guard, minimum_amount_for_cats, minimum_amount_for_traps;
+
+    [Header("bool statement")]
+    public bool guards_bool, cats_bool, traps_bool;
 
 
     private void Start()
     {
         current_Money_holds = 100;
+        drag_And_Drop = FindAnyObjectByType<Drag_and_Drop>();
     }
 
     private void Update()
     {
-        if (current_Money_holds >= 0)
+        if (current_Money_holds > 0)
         {
-            drag_And_Drop.gameObject.SetActive(false);
+            drag_And_Drop.enabled = true;
+        }
+        else
+        {
+            drag_And_Drop.enabled=false;
         }
 
         
@@ -32,12 +41,12 @@ public class Money_manager : MonoBehaviour
 
     public void Recurtering_guard()
     {
-        
+        current_Money_holds -= minimum_amount_for_guard;
     }
 
     public void buying_new_cat()
     {
-
+        current_Money_holds -= minimum_amount_for_cats;
     }
 
     public void cat_evolved()
@@ -47,7 +56,7 @@ public class Money_manager : MonoBehaviour
 
     public void buy_trap()
     {
-
+        current_Money_holds -= minimum_amount_for_traps;
     }
 
     public void buy_pesticide()
