@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -347,9 +347,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 30f9ffff
+      m_SelectedIDs: 46790000
       m_LastClickedID: 0
-      m_ExpandedIDs: 12fbffff
+      m_ExpandedIDs: 34ecffffa8eeffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -794,9 +794,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 337.40015, y: 249.65797, z: -3.6980526}
+    m_Target: {x: 334.89096, y: 246.37941, z: -3.64941}
     speed: 2
-    m_Value: {x: 337.40015, y: 249.65797, z: -3.6980526}
+    m_Value: {x: 346.49765, y: 261.54477, z: -3.8744254}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -846,9 +846,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 482.39987
+    m_Target: 477.5353
     speed: 2
-    m_Value: 482.39987
+    m_Value: 500.037
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1036,10 +1036,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 110.20001}
-    m_SelectedIDs: e6740000
-    m_LastClickedID: 29926
-    m_ExpandedIDs: 0000000056730000587300005a7300005c730000e474000000ca9a3b
+    scrollPos: {x: 0, y: 142.20001}
+    m_SelectedIDs: 20790000
+    m_LastClickedID: 31008
+    m_ExpandedIDs: 00000000907700009277000094770000967700001e79000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1067,7 +1067,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056730000587300005a7300005c730000
+    m_ExpandedIDs: 0000000090770000927700009477000096770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000448800003c920000ea92000034770000725e00007c900000749000005c1b0100aa6c0000be6600003e5a0000245d0000f05c00002a5d0000d270000008a30000728200008a5202003ec70200065407004651040088c1000094c100007cc1000076c100008ec1000082c1000082c0000050db00003eda000000000000e673000092730000d0730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
