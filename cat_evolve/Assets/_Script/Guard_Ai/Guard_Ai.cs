@@ -5,18 +5,21 @@ using UnityEngine;
 public class Guard_Ai : MonoBehaviour
 {
     [Header("AI Movement Settings")]
-    [SerializeField] private LayerMask obstacleLayer;  // Obstacles to avoid
-    [SerializeField] private LayerMask walkableLayer;  // Walkable areas
-    [SerializeField] private float speedOfAi = 3f;     // Movement speed
+    [SerializeField] private LayerMask obstacleLayer;    // Obstacles to avoid
+    [SerializeField] private LayerMask walkableLayer;    // Walkable areas
+    [SerializeField] private float speedOfAi = 3f;       // Movement speed
     [SerializeField] private float detectionRadius = 5f; // Obstacle detection radius
-    [SerializeField] private int rayCount = 8;         // Number of rays to cast
-    [SerializeField] private float patrolRadius = 4f;  // Radius for patrolling
-    [SerializeField] private float pauseDuration = 4f; // Pause time between patrol points
+    [SerializeField] private int rayCount = 8;           // Number of rays to cast
+    [SerializeField] private float patrolRadius = 4f;    // Radius for patrolling
+    [SerializeField] private float pauseDuration = 4f;   // Pause time between patrol points
 
-    public Transform target;                          // Target to move toward (set by cat_in_danger_Range)
+    public Transform target;                             // Target to move toward (set by cat_in_danger_Range)
     private Vector3 patrolTarget;
-    private bool isPatrolling = true;                  // Patrol mode flag
+    private bool isPatrolling = true;                    // Patrol mode flag
     private float pauseTimer;
+
+    public Money_manager manager;
+
 
     void Start()
     {
@@ -25,16 +28,22 @@ public class Guard_Ai : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        // Check if target is valid and on walkable layer
+        if (target != null && IsOnWalkableLayer(target.position))
         {
             MoveTowardsTarget();
             AvoidObstacles();
         }
-        else if (isPatrolling)
+        else
         {
+            // Reset target if it is destroyed or not on the walkable layer
+            target = null;
+            isPatrolling = true;
             Patrol();
             AvoidObstacles();
         }
+
+        CheckAndDestroy();
     }
 
     public void SetTarget(Transform newTarget)
@@ -46,7 +55,13 @@ public class Guard_Ai : MonoBehaviour
     private void MoveTowardsTarget()
     {
         Vector3 directionToTarget = (target.position - transform.position).normalized;
-        transform.position += directionToTarget * speedOfAi * Time.deltaTime;
+
+        // Check if the next position is on the walkable layer
+        Vector3 nextPosition = transform.position + directionToTarget * speedOfAi * Time.deltaTime;
+        if (IsOnWalkableLayer(nextPosition))
+        {
+            transform.position = nextPosition;
+        }
     }
 
     private void Patrol()
@@ -64,7 +79,17 @@ public class Guard_Ai : MonoBehaviour
         else
         {
             Vector3 directionToPatrol = (patrolTarget - transform.position).normalized;
-            transform.position += directionToPatrol * speedOfAi * Time.deltaTime;
+            Vector3 nextPosition = transform.position + directionToPatrol * speedOfAi * Time.deltaTime;
+
+            // Ensure patrol movement only occurs on walkable areas
+            if (IsOnWalkableLayer(nextPosition))
+            {
+                transform.position = nextPosition;
+            }
+            else
+            {
+                SetNewPatrolPoint(); // Find a new point if the current one isn't on a walkable area
+            }
         }
     }
 
@@ -73,9 +98,8 @@ public class Guard_Ai : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitCircle * patrolRadius;
         patrolTarget = transform.position + new Vector3(randomDirection.x, randomDirection.y, 0);
 
-        // Ensure patrol point is on walkable area
-        RaycastHit2D hit = Physics2D.Raycast(patrolTarget, Vector2.down, Mathf.Infinity, walkableLayer);
-        if (hit.collider == null)
+        // Ensure patrol point is on the walkable layer
+        if (!IsOnWalkableLayer(patrolTarget))
         {
             SetNewPatrolPoint(); // Retry if not walkable
         }
@@ -91,12 +115,45 @@ public class Guard_Ai : MonoBehaviour
 
             if (hit.collider != null)
             {
-                // Ensure you're only using the x and y components for 2D
+                // Calculate avoidance direction
                 Vector2 avoidDirection = (Vector2)(transform.position - new Vector3(hit.point.x, hit.point.y, transform.position.z)).normalized;
 
                 // Apply obstacle avoidance by steering away from obstacles
-                transform.position += (Vector3)(avoidDirection * speedOfAi * Time.deltaTime);
+                Vector3 nextPosition = transform.position + (Vector3)(avoidDirection * speedOfAi * Time.deltaTime);
+
+                // Only move if the position is on the walkable layer
+                if (IsOnWalkableLayer(nextPosition))
+                {
+                    transform.position = nextPosition;
+                }
+
                 Debug.DrawRay(transform.position, rayDirection, Color.red); // Visualize the raycast for debugging
+            }
+        }
+    }
+
+    private bool IsOnWalkableLayer(Vector3 position)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down, Mathf.Infinity, walkableLayer);
+        return hit.collider != null;
+    }
+
+    private void CheckAndDestroy()
+    {
+        if (target != null)
+        {
+            manager = FindObjectOfType<Money_manager>();
+
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+
+            // Destroy target if close enough and tagged as "danger"
+            if (distanceToTarget < 1f && target.gameObject.CompareTag("danger"))
+            {
+
+                Destroy(target.gameObject);
+                manager.current_Money_holds += 20;
+                target = null; // Reset target after destroying it
+                isPatrolling = true;
             }
         }
     }

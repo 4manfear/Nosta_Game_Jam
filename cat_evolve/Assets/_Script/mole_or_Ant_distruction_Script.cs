@@ -13,13 +13,23 @@ public class mole_or_Ant_distruction_Script : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Guard"))
+        if (collision.gameObject.CompareTag("Guard"))
         {
             Debug.Log("collision happend");
 
-            manager.current_Money_holds += 20;
+            //manager.current_Money_holds += 20;
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.gameObject.CompareTag("Guard"))
+    //    {
+    //        Debug.Log("collision happend");
+
+
+    //    }
+    //}
 }
