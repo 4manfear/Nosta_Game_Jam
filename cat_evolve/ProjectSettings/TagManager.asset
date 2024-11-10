@@ -8,6 +8,9 @@ TagManager:
   - Cat
   - Trap
   - danger
+  - BottomBoundary
+  - Non-Collectible
+  - Collectible
   layers:
   - Default
   - TransparentFX
