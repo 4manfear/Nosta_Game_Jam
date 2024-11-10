@@ -11,6 +11,7 @@ TagManager:
   - BottomBoundary
   - Non-Collectible
   - Collectible
+  - MiniGameTrigger
   layers:
   - Default
   - TransparentFX

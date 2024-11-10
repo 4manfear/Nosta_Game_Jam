@@ -6,6 +6,7 @@ public class Cat_ai_random_movement : MonoBehaviour
 {
     public enum CatType { BaseCat, WiseCat, WaterCat, EarthCat }
     public CatType currentCatType = CatType.BaseCat;
+    public bool cat_is_the_wise_cat;
 
     [Header("Evolution Settings")]
     public int xp;
@@ -41,6 +42,11 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     void Update()
     {
+        if(currentCatType == CatType.WiseCat)
+        {
+            cat_is_the_wise_cat = true;
+        }
+
         CheckEvolution();
 
         // Check if the player clicks on the cat and it can evolve
@@ -50,7 +56,6 @@ public class Cat_ai_random_movement : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
-                Debug.Log(hit.collider.gameObject);
                 EvolveCat();
             }
         }
@@ -71,6 +76,7 @@ public class Cat_ai_random_movement : MonoBehaviour
         if (currentCatType == CatType.BaseCat && xp >= xpToEvolve)
         {
             canUpgrade = true;
+           
             Debug.Log("Cat is ready to evolve to Wise Cat! Click on the cat to upgrade.");
         }
         else if (currentCatType == CatType.WiseCat && xp >= xpToEvolve && currentBiome == "Water")
@@ -88,6 +94,7 @@ public class Cat_ai_random_movement : MonoBehaviour
             currentCatType = CatType.WiseCat;
             xp = 0; // Reset XP
             canUpgrade = false;
+            
             UpdateRoamRadius();
             UpdateSprite();
             Debug.Log("Cat has been demoted to Wise Cat.");
@@ -95,6 +102,7 @@ public class Cat_ai_random_movement : MonoBehaviour
         else
         {
             canUpgrade = false;
+           
         }
     }
 
@@ -108,6 +116,7 @@ public class Cat_ai_random_movement : MonoBehaviour
             xp = 0;
             UpdateRoamRadius();
             UpdateSprite();
+            
             Debug.Log("Cat has evolved to Wise Cat.");
         }
         else if (currentCatType == CatType.WiseCat && currentBiome == "Water")
@@ -116,6 +125,7 @@ public class Cat_ai_random_movement : MonoBehaviour
             xp = 0;
             UpdateRoamRadius();
             UpdateSprite();
+            
             Debug.Log("Cat has evolved to Water Cat.");
         }
         else if (currentCatType == CatType.WiseCat && currentBiome == "Earth")
@@ -124,6 +134,7 @@ public class Cat_ai_random_movement : MonoBehaviour
             xp = 0;
             UpdateRoamRadius();
             UpdateSprite();
+           
             Debug.Log("Cat has evolved to Earth Cat.");
         }
 

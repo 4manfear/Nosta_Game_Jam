@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     [Header("Score Settings")]
     public int score = 0;
     public Text scoreText;
@@ -19,17 +18,32 @@ public class GameManager : MonoBehaviour
     private float currentTime;
     public Text timerText;
 
+    [Header("Mini Game Settings")]
+    public int miniGameSceneIndex; // Index of the mini-game scene to load
+
+    private Camera mainSceneCamera;
+    private bool isGameOver = false;
+
+    MainSceneManager mainSceneManager;
+
+    public bool cameraonker;
+
     void Start()
     {
         currentTime = timeLimit;
         UpdateScoreText();
         UpdateTimerText();
         gameOverPanel.SetActive(false); // Hide Game Over panel at the start
+
+        // Assume the main camera is the one in the main scene
+        mainSceneCamera = Camera.main;
+
+        mainSceneManager = FindObjectOfType<MainSceneManager>();
     }
 
     void Update()
     {
-        if (currentTime > 0)
+        if (!isGameOver)
         {
             currentTime -= Time.deltaTime;
             UpdateTimerText();
@@ -41,16 +55,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadMiniGame()
+    {
+        // Disable main scene camera to "pause" the main scene
+        mainSceneCamera.enabled = false;
+
+        // Load the mini-game scene additively
+        SceneManager.LoadSceneAsync(miniGameSceneIndex, LoadSceneMode.Additive);
+    }
+
     public void IncreaseScore(int amount)
     {
-        score += amount;
-        UpdateScoreText();
+        if (!isGameOver)
+        {
+            score += amount;
+            UpdateScoreText();
+        }
     }
 
     public void GameOver()
     {
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f; // Pause the game
+        isGameOver = true;
+        gameOverPanel.SetActive(true); // Show Game Over panel
+
+        // Start coroutine to unload the mini-game scene after 2 seconds
+        StartCoroutine(UnloadMiniGameSceneAfterDelay());
+    }
+
+    private IEnumerator UnloadMiniGameSceneAfterDelay()
+    {
+        cameraonker = true;
+
+        yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+        mainSceneCamera.enabled = true;
+        // Unload mini-game scene
+        SceneManager.UnloadSceneAsync(miniGameSceneIndex);
+
+        mainSceneManager.cooldown = true;
+        // Re-enable main scene camera and reset game over state
+        mainSceneManager.mainCamera.enabled = true;
+        mainSceneManager.miniGameActive = false;
+        gameOverPanel.SetActive(false); // Hide Game Over panel
+        isGameOver = false;
     }
 
     void UpdateScoreText()
@@ -65,8 +111,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
