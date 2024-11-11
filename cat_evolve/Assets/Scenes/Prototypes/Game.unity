@@ -1783,7 +1783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &787702040
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2768,7 +2768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   miniGameSceneIndex: 2
-  miniGameActive: 0
   cooldown: 0
   cooldownDuration: 30
 --- !u!1 &2022696605
@@ -3004,10 +3003,11 @@ GameObject:
   - component: {fileID: 8202189087206515410}
   - component: {fileID: 8202189087206515411}
   - component: {fileID: 8202189087206515413}
+  - component: {fileID: 8202189087206515414}
   - component: {fileID: 8202189087206515412}
   m_Layer: 0
   m_Name: CatA
-  m_TagString: Cat
+  m_TagString: LULU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3040,6 +3040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbcfb874b3a1de4eaafa1c88eaef20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xp_holder: {fileID: 11400000, guid: 2707831d4831210468061d5c2b4bbbe4, type: 2}
+  anim: {fileID: 0}
   currentCatType: 0
   cat_is_the_wise_cat: 0
   xp: 0
@@ -3051,9 +3053,13 @@ MonoBehaviour:
   wiseCatRoamRadius: 10
   specialCatRoamRadius: 15
   baseCatSprite: {fileID: 21300000, guid: 619448640fb527344814d9a8ed48b83c, type: 3}
+  bace_cat_clip: {fileID: 9100000, guid: 553579327988cb344a9cef9ae80f5860, type: 2}
   wiseCatSprite: {fileID: 21300000, guid: b939c48f337b68944ad69201059c4334, type: 3}
+  wise_cat_clip: {fileID: 0}
   waterCatSprite: {fileID: 21300000, guid: 7b9c9c81571fa374da1020e6b3dbb378, type: 3}
+  water_cat_clip: {fileID: 0}
   earthCatSprite: {fileID: 21300000, guid: 44542b96f57880144b3c337476419bbc, type: 3}
+  earth_cat_clip: {fileID: 0}
 --- !u!61 &8202189087206515411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3089,7 +3095,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.2}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.9305097, y: 0.8872727}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -3128,6 +3134,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8202189087206515414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082386793685035261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35e7db140007b40ab93b793eb6a873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catIsSelected: 0
+  indicator: {fileID: 787702039}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

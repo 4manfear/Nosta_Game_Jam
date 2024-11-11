@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
+
 
 public class Cat_ai_random_movement : MonoBehaviour
 {
+    public The_xp_holder xp_holder;
+
+    public Animator anim;
+
     public enum CatType { BaseCat, WiseCat, WaterCat, EarthCat }
     public CatType currentCatType = CatType.BaseCat;
     public bool cat_is_the_wise_cat;
@@ -24,15 +32,35 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     [Header("Sprites for Evolutions")]
     public Sprite baseCatSprite;
+    public AnimatorController bace_cat_clip;
     public Sprite wiseCatSprite;
+    public AnimatorController wise_cat_clip;
     public Sprite waterCatSprite;
+    public AnimatorController water_cat_clip;
     public Sprite earthCatSprite;
+    public AnimatorController earth_cat_clip;
     private SpriteRenderer spriteRenderer;
 
     private Vector2 startPosition;
 
     void Start()
     {
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            // Reset XP values in the ScriptableObject
+            if (xp_holder != null)
+            {
+                xp_holder.ResetXP();
+            }
+            else
+            {
+                Debug.LogError("XP Holder ScriptableObject is not assigned!");
+            }
+        }
+
+        anim = GetComponent<Animator>();
+
         startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateRoamRadius();
@@ -42,6 +70,8 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     void Update()
     {
+        xp = xp_holder.xp;
+
         if(currentCatType == CatType.WiseCat)
         {
             cat_is_the_wise_cat = true;
@@ -58,6 +88,26 @@ public class Cat_ai_random_movement : MonoBehaviour
             {
                 EvolveCat();
             }
+        }
+    }
+
+    void changing_the_animator_cuntroller()
+    {
+        if(currentCatType == CatType.BaseCat)
+        {
+            anim.runtimeAnimatorController = bace_cat_clip;
+        }
+        if (currentCatType == CatType.WiseCat)
+        {
+            anim.runtimeAnimatorController = wise_cat_clip;
+        }
+        if (currentCatType == CatType.WaterCat)
+        {
+            anim.runtimeAnimatorController = water_cat_clip;
+        }
+        if (currentCatType == CatType.EarthCat)
+        {
+            anim.runtimeAnimatorController = earth_cat_clip;
         }
     }
 
@@ -113,7 +163,8 @@ public class Cat_ai_random_movement : MonoBehaviour
         if (currentCatType == CatType.BaseCat)
         {
             currentCatType = CatType.WiseCat;
-            xp = 0;
+            xp -= xpToEvolve;
+            xp_holder.xp = xp;
             UpdateRoamRadius();
             UpdateSprite();
             

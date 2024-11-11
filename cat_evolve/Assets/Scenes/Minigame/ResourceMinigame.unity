@@ -1478,7 +1478,7 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 1920750514}
   gameOverPanel: {fileID: 566428924}
-  timeLimit: 5
+  timeLimit: 30
   timerText: {fileID: 1494991287}
   miniGameSceneIndex: 2
   cameraonker: 0

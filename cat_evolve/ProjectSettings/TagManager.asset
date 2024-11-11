@@ -12,6 +12,7 @@ TagManager:
   - Non-Collectible
   - Collectible
   - MiniGameTrigger
+  - LULU
   layers:
   - Default
   - TransparentFX
