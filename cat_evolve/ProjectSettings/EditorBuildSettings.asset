@@ -13,25 +13,28 @@ EditorBuildSettings:
     guid: 12abd6b1f9eaf204f90dab61a16af929
   - enabled: 1
     path: Assets/Scenes/t 1.unity
-    guid: 8fdc278ef7ecd874a94add180c933edc
+    guid: a1e3d5884eda51c4ca6fdd74d3d7878e
   - enabled: 1
     path: Assets/Scenes/t 2.unity
-    guid: 9b904a9cff2895e4cac8795046599f77
+    guid: 3200beb9b5dc5e2409a2c424dd204f96
   - enabled: 1
     path: Assets/Scenes/t 3.unity
-    guid: 5832c488c235ef442b279b1c3c746642
+    guid: efbb49f0536dbce4d8bb7d0b0728dddc
   - enabled: 1
     path: Assets/Scenes/t 4.unity
-    guid: 9343033d3fa7c6e48b2ec1490efc2f98
+    guid: 7faf2b54ffa0866499acf75e0fdad26a
   - enabled: 1
     path: Assets/Scenes/t 5.unity
-    guid: 228b482d2092904468eea51384958904
+    guid: ee0382a123eb11d4884b8d5301bdada5
   - enabled: 1
     path: Assets/Scenes/t 6.unity
-    guid: 64b12d921cbe7e24e93315e524915ece
+    guid: cb374accc19f9fc498b33a9f7ca90469
   - enabled: 1
     path: Assets/Scenes/t 7.unity
-    guid: bd4ce863b1014b047b026ee596dd3a37
+    guid: b1063aa0a2fafa84981a76002c51eaf7
+  - enabled: 1
+    path: Assets/Scenes/t 8.unity
+    guid: ff9a9c92f682fce4787c2aeab0a563c4
   - enabled: 1
     path: Assets/Scenes/Prototypes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
