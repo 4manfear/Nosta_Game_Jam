@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+
 using UnityEngine;
-using UnityEngine.Animations;
+using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
+using UnityEditor.Animations;
 
 
 public class Cat_ai_random_movement : MonoBehaviour

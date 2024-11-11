@@ -9,6 +9,30 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/MainMenu.unity
     guid: eb0bef6dcbc38204b9931396092ccbe8
   - enabled: 1
+    path: Assets/Scenes/t.unity
+    guid: 12abd6b1f9eaf204f90dab61a16af929
+  - enabled: 1
+    path: Assets/Scenes/t 1.unity
+    guid: 8fdc278ef7ecd874a94add180c933edc
+  - enabled: 1
+    path: Assets/Scenes/t 2.unity
+    guid: 9b904a9cff2895e4cac8795046599f77
+  - enabled: 1
+    path: Assets/Scenes/t 3.unity
+    guid: 5832c488c235ef442b279b1c3c746642
+  - enabled: 1
+    path: Assets/Scenes/t 4.unity
+    guid: 9343033d3fa7c6e48b2ec1490efc2f98
+  - enabled: 1
+    path: Assets/Scenes/t 5.unity
+    guid: 228b482d2092904468eea51384958904
+  - enabled: 1
+    path: Assets/Scenes/t 6.unity
+    guid: 64b12d921cbe7e24e93315e524915ece
+  - enabled: 1
+    path: Assets/Scenes/t 7.unity
+    guid: bd4ce863b1014b047b026ee596dd3a37
+  - enabled: 1
     path: Assets/Scenes/Prototypes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
