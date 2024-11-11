@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public The_xp_holder xp_Holder;
+
+
     [Header("Score Settings")]
     public int score = 0;
     public Text scoreText;
@@ -30,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
+       
+
         currentTime = timeLimit;
         UpdateScoreText();
         UpdateTimerText();
@@ -43,6 +49,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //xp_Holder = Resources.Load<The_xp_holder>("The_xp_holder");
+
+        //// Check if the asset was successfully loaded
+        //if (xp_Holder == null)
+        //{
+        //    Debug.LogError("The_xp_holder ScriptableObject not found! Ensure it is in the Resources folder.");
+        //    return;
+        //}
+
+
         if (!isGameOver)
         {
             currentTime -= Time.deltaTime;
@@ -94,7 +110,7 @@ public class GameManager : MonoBehaviour
         mainSceneManager.cooldown = true;
         // Re-enable main scene camera and reset game over state
         mainSceneManager.mainCamera.enabled = true;
-        mainSceneManager.miniGameActive = false;
+      
         gameOverPanel.SetActive(false); // Hide Game Over panel
         isGameOver = false;
     }
@@ -102,6 +118,7 @@ public class GameManager : MonoBehaviour
     void UpdateScoreText()
     {
         scoreText.text = "Score: " + score;
+        xp_Holder.xp = xp_Holder.xp + score;
     }
 
     void UpdateTimerText()

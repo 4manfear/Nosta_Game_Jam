@@ -1474,6 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad7050862eb0ca4abc850bd7a9d0624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xp_Holder: {fileID: 11400000, guid: 2707831d4831210468061d5c2b4bbbe4, type: 2}
   score: 0
   scoreText: {fileID: 1920750514}
   gameOverPanel: {fileID: 566428924}
