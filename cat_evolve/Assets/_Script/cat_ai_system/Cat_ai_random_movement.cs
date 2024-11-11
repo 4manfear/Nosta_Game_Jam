@@ -154,9 +154,12 @@ public class Cat_ai_random_movement : MonoBehaviour
             canUpgrade = true;
             Debug.Log("Cat is ready to evolve to Earth Cat! Click on the cat to upgrade.");
         }
+        /*
         else if ((currentCatType == CatType.WaterCat || currentCatType == CatType.EarthCat) && currentBiome != currentCatType.ToString())
         {
+            // preventing the upgrade of the cat to water form.
             currentCatType = CatType.WiseCat;
+            Debug.Log("Cannot change cat further");
             xp = 0; // Reset XP
             canUpgrade = false;
 
@@ -167,7 +170,7 @@ public class Cat_ai_random_movement : MonoBehaviour
         else
         {
             canUpgrade = false;
-        }
+        }*/
     }
 
     private void EvolveCat()

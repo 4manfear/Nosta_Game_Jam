@@ -8,13 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public The_xp_holder xp_Holder;
 
-
     [Header("Score Settings")]
     public int score = 0;
     public Text scoreText;
-
-    [Header("Game Over Settings")]
-    public GameObject gameOverPanel;
 
     [Header("Timer Settings")]
     public float timeLimit = 30f; // Set the timer duration in seconds
@@ -33,13 +29,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
-       
-
         currentTime = timeLimit;
         UpdateScoreText();
         UpdateTimerText();
-        gameOverPanel.SetActive(false); // Hide Game Over panel at the start
 
         // Assume the main camera is the one in the main scene
         mainSceneCamera = Camera.main;
@@ -49,16 +41,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //xp_Holder = Resources.Load<The_xp_holder>("The_xp_holder");
-
-        //// Check if the asset was successfully loaded
-        //if (xp_Holder == null)
-        //{
-        //    Debug.LogError("The_xp_holder ScriptableObject not found! Ensure it is in the Resources folder.");
-        //    return;
-        //}
-
-
         if (!isGameOver)
         {
             currentTime -= Time.deltaTime;
@@ -92,9 +74,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
-        gameOverPanel.SetActive(true); // Show Game Over panel
 
-        // Start coroutine to unload the mini-game scene after 2 seconds
+        // Start coroutine to unload the mini-game scene after 0.5 seconds
         StartCoroutine(UnloadMiniGameSceneAfterDelay());
     }
 
@@ -104,14 +85,11 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
         mainSceneCamera.enabled = true;
-        // Unload mini-game scene
         SceneManager.UnloadSceneAsync(miniGameSceneIndex);
 
         mainSceneManager.cooldown = true;
-        // Re-enable main scene camera and reset game over state
         mainSceneManager.mainCamera.enabled = true;
-      
-        gameOverPanel.SetActive(false); // Hide Game Over panel
+
         isGameOver = false;
     }
 
