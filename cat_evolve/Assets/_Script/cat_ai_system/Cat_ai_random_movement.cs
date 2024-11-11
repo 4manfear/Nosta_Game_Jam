@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class Cat_ai_random_movement : MonoBehaviour
 {
     public The_xp_holder xp_holder;
-
     public Animator anim;
 
     public enum CatType { BaseCat, WiseCat, WaterCat, EarthCat }
@@ -43,9 +42,11 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     private Vector2 startPosition;
 
+    public bool can_chang_intowater;
+    public bool can_change_intoGround;
+
     void Start()
     {
-
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             // Reset XP values in the ScriptableObject
@@ -60,7 +61,6 @@ public class Cat_ai_random_movement : MonoBehaviour
         }
 
         anim = GetComponent<Animator>();
-
         startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateRoamRadius();
@@ -70,11 +70,27 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     void Update()
     {
+        UpdateSprite();
+        changing_the_animator_controller();
+
+        if(can_chang_intowater)
+        {
+            currentCatType = CatType.WaterCat;
+        }
+        if (can_change_intoGround)
+        {
+            currentCatType = CatType.EarthCat;
+        }
+
         xp = xp_holder.xp;
 
-        if(currentCatType == CatType.WiseCat)
+        if (currentCatType == CatType.WiseCat)
         {
             cat_is_the_wise_cat = true;
+        }
+        else
+        {
+            cat_is_the_wise_cat = false;
         }
 
         CheckEvolution();
@@ -91,21 +107,21 @@ public class Cat_ai_random_movement : MonoBehaviour
         }
     }
 
-    void changing_the_animator_cuntroller()
+    void changing_the_animator_controller()
     {
-        if(currentCatType == CatType.BaseCat)
+        if (currentCatType == CatType.BaseCat)
         {
             anim.runtimeAnimatorController = bace_cat_clip;
         }
-        if (currentCatType == CatType.WiseCat)
+        else if (currentCatType == CatType.WiseCat)
         {
             anim.runtimeAnimatorController = wise_cat_clip;
         }
-        if (currentCatType == CatType.WaterCat)
+        else if (currentCatType == CatType.WaterCat)
         {
             anim.runtimeAnimatorController = water_cat_clip;
         }
-        if (currentCatType == CatType.EarthCat)
+        else if (currentCatType == CatType.EarthCat)
         {
             anim.runtimeAnimatorController = earth_cat_clip;
         }
@@ -126,15 +142,14 @@ public class Cat_ai_random_movement : MonoBehaviour
         if (currentCatType == CatType.BaseCat && xp >= xpToEvolve)
         {
             canUpgrade = true;
-           
             Debug.Log("Cat is ready to evolve to Wise Cat! Click on the cat to upgrade.");
         }
-        else if (currentCatType == CatType.WiseCat && xp >= xpToEvolve && currentBiome == "Water")
+        else if (currentCatType == CatType.WiseCat && waterxp >= 100)
         {
             canUpgrade = true;
             Debug.Log("Cat is ready to evolve to Water Cat! Click on the cat to upgrade.");
         }
-        else if (currentCatType == CatType.WiseCat && xp >= xpToEvolve && currentBiome == "Earth")
+        else if (currentCatType == CatType.WiseCat && grassxp >= 100)
         {
             canUpgrade = true;
             Debug.Log("Cat is ready to evolve to Earth Cat! Click on the cat to upgrade.");
@@ -144,15 +159,14 @@ public class Cat_ai_random_movement : MonoBehaviour
             currentCatType = CatType.WiseCat;
             xp = 0; // Reset XP
             canUpgrade = false;
-            
+
             UpdateRoamRadius();
-            UpdateSprite();
+           
             Debug.Log("Cat has been demoted to Wise Cat.");
         }
         else
         {
             canUpgrade = false;
-           
         }
     }
 
@@ -166,30 +180,65 @@ public class Cat_ai_random_movement : MonoBehaviour
             xp -= xpToEvolve;
             xp_holder.xp = xp;
             UpdateRoamRadius();
-            UpdateSprite();
+            
             
             Debug.Log("Cat has evolved to Wise Cat.");
         }
-        else if (currentCatType == CatType.WiseCat && currentBiome == "Water")
+        else if (currentCatType == CatType.WiseCat && waterxp >= 100)
         {
-            currentCatType = CatType.WaterCat;
-            xp = 0;
-            UpdateRoamRadius();
-            UpdateSprite();
-            
+           
             Debug.Log("Cat has evolved to Water Cat.");
         }
-        else if (currentCatType == CatType.WiseCat && currentBiome == "Earth")
+        else if (currentCatType == CatType.WiseCat && grassxp >= 100)
         {
-            currentCatType = CatType.EarthCat;
-            xp = 0;
-            UpdateRoamRadius();
-            UpdateSprite();
-           
+            
             Debug.Log("Cat has evolved to Earth Cat.");
         }
 
         canUpgrade = false; // Reset upgrade flag after evolving
+    }
+
+    public void chang_water_form_button()
+    {
+        Debug.Log("Water button clicked");
+        if (currentCatType == CatType.WiseCat && waterxp >= 100)
+        {
+            can_chang_intowater = true;
+            cat_is_the_wise_cat = false;
+            can_change_intoGround = false;
+            currentCatType = CatType.WaterCat;
+            waterxp -= 100;
+            
+            
+         
+            Debug.Log("Cat has changed to Water Cat form.");
+        }
+        else
+        {
+            Debug.Log("Cannot change to Water Cat form.");
+        }
+    }
+
+    public void change_ground_form_button()
+    {
+        Debug.Log("Ground button clicked");
+        if (currentCatType == CatType.WiseCat && grassxp >= 100)
+        {
+            can_chang_intowater = false;
+            cat_is_the_wise_cat = false;
+            can_change_intoGround = true;
+
+            grassxp -= 100;
+            
+            
+            
+
+            Debug.Log("Cat has changed to Earth Cat form.");
+        }
+        else
+        {
+            Debug.Log("Cannot change to Earth Cat form.");
+        }
     }
 
     private void UpdateSprite()
@@ -223,5 +272,4 @@ public class Cat_ai_random_movement : MonoBehaviour
     {
         currentBiome = biome;
     }
-
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48db2148cabb6a14e91533b28d4d25a1, type: 3}
   m_Name: all_xp_holder
   m_EditorClassIdentifier: 
-  xp: 0
+  xp: 25
   waterxp: 0
   grassxp: 0
