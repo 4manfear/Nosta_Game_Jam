@@ -2885,7 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
-  miniGameSceneIndex: 10
+  miniGameSceneIndex: 11
   cooldown: 0
   cooldownDuration: 30
 --- !u!1 &1908513788
@@ -3536,9 +3536,9 @@ MonoBehaviour:
   bace_cat_clip: {fileID: 9100000, guid: 553579327988cb344a9cef9ae80f5860, type: 2}
   wiseCatSprite: {fileID: 21300000, guid: b939c48f337b68944ad69201059c4334, type: 3}
   wise_cat_clip: {fileID: 9100000, guid: 210c01f6544d9094e86160a47e7f8840, type: 2}
-  waterCatSprite: {fileID: 21300000, guid: 7b9c9c81571fa374da1020e6b3dbb378, type: 3}
+  waterCatSprite: {fileID: 21300000, guid: 32ec97e403049594b87e07aaa66b6bc6, type: 3}
   water_cat_clip: {fileID: 9100000, guid: 7ae1134e3801d674d8a717750c02d395, type: 2}
-  earthCatSprite: {fileID: 21300000, guid: 44542b96f57880144b3c337476419bbc, type: 3}
+  earthCatSprite: {fileID: 21300000, guid: 32ec97e403049594b87e07aaa66b6bc6, type: 3}
   earth_cat_clip: {fileID: 9100000, guid: f826847d72b050f46abec945e2ba544f, type: 2}
   can_chang_intowater: 0
   can_change_intoGround: 0

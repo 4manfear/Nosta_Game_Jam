@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
-using UnityEngine.Animations;
-using UnityEditor.Animations;
+
 
 
 public class Cat_ai_random_movement : MonoBehaviour
@@ -33,13 +29,13 @@ public class Cat_ai_random_movement : MonoBehaviour
 
     [Header("Sprites for Evolutions")]
     public Sprite baseCatSprite;
-    public AnimatorController bace_cat_clip;
+    public RuntimeAnimatorController bace_cat_clip;
     public Sprite wiseCatSprite;
-    public AnimatorController wise_cat_clip;
+    public RuntimeAnimatorController wise_cat_clip;
     public Sprite waterCatSprite;
-    public AnimatorController water_cat_clip;
+    public RuntimeAnimatorController water_cat_clip;
     public Sprite earthCatSprite;
-    public AnimatorController earth_cat_clip;
+    public RuntimeAnimatorController earth_cat_clip;
     private SpriteRenderer spriteRenderer;
 
     private Vector2 startPosition;
@@ -51,7 +47,6 @@ public class Cat_ai_random_movement : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            // Reset XP values in the ScriptableObject
             if (xp_holder != null)
             {
                 xp_holder.ResetXP();
@@ -63,10 +58,21 @@ public class Cat_ai_random_movement : MonoBehaviour
         }
 
         anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.LogError("Animator component is missing from the GameObject.");
+        }
+
         startPosition = transform.position;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer component is missing from the GameObject.");
+        }
+
         UpdateRoamRadius();
-        UpdateSprite(); // Set initial sprite based on starting type
+        UpdateSprite();
         StartCoroutine(Roam());
     }
 
@@ -75,7 +81,7 @@ public class Cat_ai_random_movement : MonoBehaviour
         UpdateSprite();
         changing_the_animator_controller();
 
-        if(can_chang_intowater)
+        if (can_chang_intowater)
         {
             currentCatType = CatType.WaterCat;
         }

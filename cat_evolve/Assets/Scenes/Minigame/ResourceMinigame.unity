@@ -1779,7 +1779,7 @@ MonoBehaviour:
   scoreText: {fileID: 1920750514}
   timeLimit: 30
   timerText: {fileID: 1494991287}
-  miniGameSceneIndex: 10
+  miniGameSceneIndex: 11
   cameraonker: 0
 --- !u!4 &1936087421
 Transform:
